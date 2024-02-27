@@ -1,0 +1,114 @@
+<app-home></app-home>
+<div class="container col-md-8 justify-content-center">
+  <!-- <div class="col justify-content-end d-flex">
+    <button mat-mini-fab color="primary" (click)="onClickHome()">
+      <mat-icon>home</mat-icon>
+    </button>
+  </div> -->
+  <form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    <div class="col mt-3 p-2 text-center">
+      <mat-card class="resFormCard p-2">
+        <h2 class="text-center">
+          <u>Create New/Update Reservations</u>
+        </h2>
+
+        <div class="row">
+          <div class="col">
+            <div class="mt-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Check-In Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="checkInPicker"
+                  formControlName="checkInDate"
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-error *ngIf="reservationForm.get('checkInDate')?.invalid">
+                  Check-In Date is <strong>required</strong>
+                </mat-error>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="checkInPicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #checkInPicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="mt-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Check-Out Date</mat-label>
+                <input
+                  matInput
+                  [matDatepicker]="checkOutPicker"
+                  formControlName="checkOutDate"
+                />
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-error *ngIf="reservationForm.get('checkOutDate')?.invalid">
+                  Check-Out Date is <strong>required</strong>
+                </mat-error>
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="checkOutPicker"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #checkOutPicker></mat-datepicker>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <div class="mt-2">
+              <mat-form-field appearance="outline" class="customFormField">
+                <mat-label>Guest Name</mat-label>
+                <input matInput formControlName="guestName" />
+                <mat-error *ngIf="reservationForm.get('guestName')?.invalid">
+                  Guest Name is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="col">
+            <div class="mt-2">
+              <mat-form-field appearance="outline" class="customFormField">
+                <mat-label>Guest Email</mat-label>
+                <input matInput formControlName="guestEmail" type="email" />
+                <mat-error *ngIf="reservationForm.get('guestEmail')?.invalid">
+                  Guest Email is <strong>required</strong>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-2">
+          <mat-form-field appearance="outline" class="customFormField">
+            <mat-label>Room Number</mat-label>
+            <input matInput formControlName="roomNumber" />
+            <mat-error *ngIf="reservationForm.get('roomNumber')?.invalid">
+              Room Number is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="mt-1">
+          <mat-card-actions>
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="reservationForm.invalid"
+              class="submitBtn"
+            >
+              Submit
+              <mat-icon iconPositionEnd>chevron_right</mat-icon>
+            </button>
+          </mat-card-actions>
+        </div>
+      </mat-card>
+    </div>
+  </form>
+</div>
+<ng-template #updateReservation>
+  <p style="color: red" class="text-center">No reservations found.</p>
+</ng-template>

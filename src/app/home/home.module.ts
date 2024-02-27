@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { CommonModule } from '@angular/common';
+import { HomeComponent } from './home.component';
 import { MatInputModule } from  '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -15,16 +12,15 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from  '@angular/material/icon';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from  '@angular/material/datepicker';
-import { HomeModule } from './home/home.module';
-import { ReservationModule } from './reservation/reservation.module';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    HomeComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
+    CommonModule,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
@@ -35,16 +31,8 @@ import { ReservationModule } from './reservation/reservation.module';
     MatListModule,
     MatDividerModule,
     MatIconModule,
-    HomeModule,
-    ReservationModule
+    RouterModule
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync(),
-    MatDatepickerModule,
-    MatNativeDateModule,
-    provideNativeDateAdapter()
-  ],
-  bootstrap: [AppComponent]
+  exports: [HomeComponent]
 })
-export class AppModule { }
+export class HomeModule { }
