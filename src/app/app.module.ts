@@ -17,6 +17,7 @@ import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from  '@angular/material/datepicker';
 import { HomeModule } from './home/home.module';
 import { ReservationModule } from './reservation/reservation.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ReservationModule } from './reservation/reservation.module';
     MatDividerModule,
     MatIconModule,
     HomeModule,
-    ReservationModule
+    ReservationModule,
+    HttpClientModule
   ],
   providers: [
     provideClientHydration(),

@@ -55,7 +55,5 @@ export class ReservationFormComponent implements OnInit{
       this.router.navigate(['/list']);
     }
   }
-  onClickHome(){
-    this.reservationService.onClickHome();
-  }
+
 }
