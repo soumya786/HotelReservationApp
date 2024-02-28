@@ -24,7 +24,9 @@ export class ReservationListComponent implements OnInit{
   }
 
   deleteReservation(id: string){
-    this.reservationService.deleteReservation(id);
+    this.reservationService.deleteReservation(id).subscribe(()=>{
+      alert("delete request got processed.");
+    });
   }
 
 

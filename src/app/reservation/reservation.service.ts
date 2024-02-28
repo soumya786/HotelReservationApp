@@ -30,46 +30,23 @@ export class ReservationService {
     return this.http.get<Reservation[]>(this.apiUrl + "/reservations");
   }
 
-  getReservation(id: string): Reservation | undefined {
-    return this.reservations.find(res=>res.id===id)
+  getReservation(id: string): Observable<Reservation> {
+    return this.http.get<Reservation>(this.apiUrl + '/reservation/' + id);
   }
 
-  addReservation(reservation: Reservation): void{
+  addReservation(reservation: Reservation): Observable<void>{
 
-    if(typeof localStorage!== 'undefined'){
-      reservation.id = Date.now().toString();
-      this.reservations.push(reservation);
-      // localStorage.setItem('reservations', JSON.stringify(this.reservations));
-      console.log(this.reservations);
-    }else{
-      console.error("Local storage error");
-    }
+    return this.http.post<void>(this.apiUrl+'/reservations', reservation);
 
   }
 
-  deleteReservation(id: string): void{
-    if(typeof localStorage!== 'undefined'){
-      let index = this.reservations.findIndex(r => r.id === id);
-      this.reservations.splice(index,1);
-      // localStorage.setItem('reservations', JSON.stringify(this.reservations));
-
-    }else{
-      console.error("Local storage error");
-    }
+  deleteReservation(id: string): Observable<void>{
+    return this.http.delete<void>(this.apiUrl+'/reservation/'+id);
 
   }
 
-  updateReservation(id: string, updateReservation: Reservation):void{
-    if(typeof localStorage!== 'undefined'){
-      let index = this.reservations.findIndex(r =>
-        r.id === id);
-        updateReservation.id = id;
-        this.reservations[index] = updateReservation;
-        localStorage.setItem('reservations', JSON.stringify(this.reservations));
-
-    }else{
-      console.error("Local storage error");
-    }
+  updateReservation(id: string, updateReservation: Reservation): Observable<void>{
+    return this.http.put<void>(this.apiUrl+'/reservation/'+id,updateReservation);
 
   }
 
