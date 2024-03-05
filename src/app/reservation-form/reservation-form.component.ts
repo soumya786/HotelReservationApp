@@ -3,6 +3,7 @@ import { FormBuilder,  Validators, FormGroup } from '@angular/forms';
 import { ReservationService } from '../reservation/reservation.service';
 import { Reservation } from '../models/reservation';
 import { Router, ActivatedRoute } from  '@angular/router';
+import { DateAdapter } from '@angular/material/core';
 
 @Component({
   selector: 'app-reservation-form',
@@ -17,8 +18,11 @@ export class ReservationFormComponent implements OnInit{
     private formBuilder: FormBuilder,
     private  reservationService: ReservationService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-    ){}
+    private activatedRoute: ActivatedRoute,
+    private dateAdapter: DateAdapter<Date>
+    ){
+      this.dateAdapter.setLocale('en-GB'); // Set the locale to UK English
+    }
 
   ngOnInit(): void {
     this.reservationForm =  this.formBuilder.group({
@@ -46,7 +50,7 @@ export class ReservationFormComponent implements OnInit{
       let id = this.activatedRoute.snapshot.paramMap.get('id');
       if(id){
         //updating the existing id
-        // reservation.id=id;
+        reservation.id=id;
         this.reservationService.updateReservation(id,reservation).subscribe(()=>{
           alert("Updated Successfully");
         });

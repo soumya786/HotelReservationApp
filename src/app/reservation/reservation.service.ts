@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class ReservationService {
 
-  private apiUrl = "http://localhost:3001";
+  private apiUrl = "http://localhost:8081/reservation";
   private reservations: Reservation[] = [];
 
   constructor(private http: HttpClient){}
@@ -27,7 +27,7 @@ export class ReservationService {
 
   getReservations(): Observable<Reservation []>{
     // return this.reservations;
-    return this.http.get<Reservation[]>(this.apiUrl + "/reservations");
+    return this.http.get<Reservation[]>(this.apiUrl + "/allReservations");
   }
 
   getReservation(id: string): Observable<Reservation> {
@@ -36,17 +36,17 @@ export class ReservationService {
 
   addReservation(reservation: Reservation): Observable<void>{
 
-    return this.http.post<void>(this.apiUrl+'/reservations', reservation);
+    return this.http.post<void>(this.apiUrl+'/addReservation', reservation);
 
   }
 
   deleteReservation(id: string): Observable<void>{
-    return this.http.delete<void>(this.apiUrl+'/reservation/'+id);
+    return this.http.delete<void>(this.apiUrl+'/deleteReservation/'+id);
 
   }
 
   updateReservation(id: string, updateReservation: Reservation): Observable<void>{
-    return this.http.put<void>(this.apiUrl+'/reservation/'+id,updateReservation);
+    return this.http.put<void>(this.apiUrl+'/updateReservation/'+id,updateReservation);
 
   }
 

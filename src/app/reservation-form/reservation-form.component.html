@@ -22,7 +22,7 @@
                   [matDatepicker]="checkInPicker"
                   formControlName="checkInDate"
                 />
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-error *ngIf="reservationForm.get('checkInDate')?.invalid">
                   Check-In Date is <strong>required</strong>
                 </mat-error>
@@ -43,7 +43,7 @@
                   [matDatepicker]="checkOutPicker"
                   formControlName="checkOutDate"
                 />
-                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-hint>DD/MM/YYYY</mat-hint>
                 <mat-error *ngIf="reservationForm.get('checkOutDate')?.invalid">
                   Check-Out Date is <strong>required</strong>
                 </mat-error>
